@@ -4,17 +4,23 @@ import {
   Container,
   Toolbar,
   Typography,
-  createMuiTheme,
   CssBaseline,
   ThemeProvider,
-} from "@mui/material";
+  Switch,
+  Badge,
+} from "@material-ui/core";
 import Head from "next/head";
-import React from "react";
+import React, { useContext } from "react";
 import useStyles from "../utils/styles";
 import NextLink from "next/link";
+import { Store } from "../utils/Store";
+import Cookies from "js-cookie";
+import { createTheme } from "@material-ui/core/styles";
 
 export default function Layout({ children, title, description }) {
-  const theme = createMuiTheme({
+  const { state, dispatch } = useContext(Store);
+  const { darkMode, cart } = state;
+  const theme = createTheme({
     typography: {
       h1: {
         fontSize: "1.6rem",
@@ -28,9 +34,9 @@ export default function Layout({ children, title, description }) {
       },
     },
     palette: {
-      type: "light",
+      type: darkMode ? "dark" : "light",
       primary: {
-        main: "#f0c040",
+        main: "#f0c000",
       },
       secondary: {
         main: "#208080",
@@ -38,6 +44,11 @@ export default function Layout({ children, title, description }) {
     },
   });
   const classes = useStyles();
+  const darkModeChangeHandler = () => {
+    dispatch({ type: darkMode ? "DARK_MODE_OFF" : "DARK_MODE_ON" });
+    const newDarkMode = !darkMode;
+    Cookies.set("darkMode", newDarkMode ? "ON" : "OFF");
+  };
 
   return (
     <div>
@@ -56,8 +67,23 @@ export default function Layout({ children, title, description }) {
             </NextLink>
             <div className={classes.grow}></div>
             <div>
+              <Switch
+                checked={darkMode}
+                onChange={darkModeChangeHandler}
+              ></Switch>
               <NextLink href="/cart" passHref>
-                <Link>Cart</Link>
+                <Link>
+                  {cart.cartItems.length > 0 ? (
+                    <Badge
+                      color="secondary"
+                      badgeContent={cart.cartItems.length}
+                    >
+                      Cart
+                    </Badge>
+                  ) : (
+                    "Cart"
+                  )}
+                </Link>
               </NextLink>
               <NextLink href="/login" passHref>
                 <Link>Login</Link>
