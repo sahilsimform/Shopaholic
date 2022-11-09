@@ -1,7 +1,6 @@
-import { ServerStyleSheets } from "@mui/styles";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import React from "react";
-
+import { ServerStyleSheets } from "@material-ui/core/styles";
 export default class MyDocument extends Document {
   render() {
     return (
@@ -10,7 +9,7 @@ export default class MyDocument extends Document {
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          ></link>
+          />
         </Head>
         <body>
           <Main />
