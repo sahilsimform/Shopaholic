@@ -8,15 +8,14 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
-import Layout from "../components/Layout";
-// import data from "../utils/data";
 import NextLink from "next/link";
-import db from "../utils/db";
-import Product from "../models/Product";
+import Product from "../src/models/Product";
 import { useRouter } from "next/router";
 import { useContext } from "react";
-import { Store } from "../utils/Store";
+import { Store } from "../src/utils/Store";
 import axios from "axios";
+import Layout from "../src/components/Layout";
+import db from "../src/utils/db";
 
 export default function Home(props) {
   const router = useRouter();

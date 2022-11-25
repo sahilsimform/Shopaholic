@@ -1,4 +1,20 @@
+import bcrypt from "bcryptjs";
+
 const data = {
+  users: [
+    {
+      name: "Sahil",
+      email: "sahil@admin.com",
+      password: bcrypt.hashSync("123456"),
+      isAdmin: true,
+    },
+    {
+      name: "Payal",
+      email: "payal@test.com",
+      password: bcrypt.hashSync("123456"),
+      isAdmin: false,
+    },
+  ],
   products: [
     {
       id: "1",
@@ -6,7 +22,7 @@ const data = {
       slug: "free-shirt",
       category: "Shirts",
       image: "/images/shirt1.jpg",
-      price: 70,
+      price: 1245,
       brand: "Nike",
       rating: 4.5,
       numReviews: 10,
@@ -19,7 +35,7 @@ const data = {
       slug: "fit-shirt",
       category: "Shirts",
       image: "/images/shirt2.jpg",
-      price: 80,
+      price: 2025,
       brand: "Adidas",
       rating: 4.1,
       numReviews: 10,
@@ -32,7 +48,7 @@ const data = {
       slug: "slim-shirt",
       category: "Shirts",
       image: "/images/shirt3.jpg",
-      price: 90,
+      price: 1681,
       brand: "Raymond",
       rating: 4.5,
       numReviews: 10,
@@ -45,7 +61,7 @@ const data = {
       slug: "golf-pants",
       category: "Pants",
       image: "/images/pants1.jpg",
-      price: 90,
+      price: 1754,
       brand: "Oliver",
       rating: 4.5,
       numReviews: 10,
@@ -58,7 +74,7 @@ const data = {
       slug: "fit-pants",
       category: "Pants",
       image: "/images/pants2.jpg",
-      price: 95,
+      price: 2000,
       brand: "Zara",
       rating: 4.5,
       numReviews: 10,
@@ -71,7 +87,7 @@ const data = {
       slug: "classic-pants",
       category: "Pants",
       image: "/images/pants3.jpg",
-      price: 70,
+      price: 2046,
       brand: "Casely",
       rating: 4.5,
       numReviews: 10,
