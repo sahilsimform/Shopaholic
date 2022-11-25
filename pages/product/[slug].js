@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import Layout from "../../components/Layout";
+import Layout from "../../src/components/Layout";
 import NextLink from "next/link";
-import useStyles from "../../utils/styles";
+import useStyles from "../../src/utils/styles";
 import {
   Button,
   Card,
@@ -12,10 +12,10 @@ import {
   Typography,
 } from "@material-ui/core";
 import Image from "next/image";
-import Product from "../../models/Product";
-import db from "../../utils/db";
+import Product from "../../src/models/Product";
+import db from "../../src/utils/db";
 import axios from "axios";
-import { Store } from "../../utils/Store";
+import { Store } from "../../src/utils/Store";
 import { useRouter } from "next/router";
 
 export default function ProductScreen(props) {
