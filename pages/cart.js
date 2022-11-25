@@ -6,7 +6,6 @@ import Image from "next/image";
 import {
   Grid,
   TableContainer,
-  Table,
   Typography,
   TableHead,
   TableBody,
