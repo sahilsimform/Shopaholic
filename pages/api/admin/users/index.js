@@ -1,15 +1,16 @@
 import nc from "next-connect";
-import { isAuth } from "../../../../src/utils/auth";
-import Order from "../../../../src/models/Order";
+import User from "../../../../src/models/User";
+import { isAdmin, isAuth } from "../../../../src/utils/auth";
 import db from "../../../../src/utils/db";
 
 const handler = nc();
-handler.use(isAuth);
+handler.use(isAuth, isAdmin);
+
 handler.get(async (req, res) => {
   await db.connect();
-  const order = await Order.findById(req.query.id);
+  const users = await User.find({});
   await db.disconnect();
-  res.send(order);
+  res.send(users);
 });
 
 export default handler;
