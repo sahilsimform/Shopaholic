@@ -29,7 +29,6 @@ export default function Shipping() {
     userInfo,
     cart: { shippingAddress },
   } = state;
-
   useEffect(() => {
     if (!userInfo) {
       router.push("/login?redirect=/shipping");
@@ -49,10 +48,11 @@ export default function Shipping() {
     });
     Cookies.set(
       "shippingAddress",
-      JSON.stringify({ fullName, address, city, postalCode, country })
+      JSON.stringify({ fullName, address, city, postalCode, country, location })
     );
     router.push(redirect || "/payment");
   };
+
   return (
     <Layout title="Shipping">
       <CheckoutWizard activeStep={1} />
