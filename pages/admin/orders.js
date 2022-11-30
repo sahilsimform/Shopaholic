@@ -19,7 +19,6 @@ import {
   TableCell,
   TableBody,
 } from "@material-ui/core";
-import Head from "next/head";
 import { Store } from "../../src/utils/Store";
 import useStyles from "../../src/utils/styles";
 import { getError } from "../../src/utils/error";

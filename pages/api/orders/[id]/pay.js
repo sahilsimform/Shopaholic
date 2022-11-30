@@ -1,6 +1,6 @@
 import { isAuth } from "../../../../src/utils/auth";
 import db from "../../../../src/utils/db";
-import onError from "../../../../src/utils/error";
+import { onError } from "../../../../src/utils/error";
 import Order from "../../../../src/models/Order";
 import nc from "next-connect";
 
