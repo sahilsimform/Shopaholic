@@ -5,7 +5,8 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 
 import NextLink from "next/link";
-
+import Delete from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
 import React, { useEffect, useContext, useReducer } from "react";
 
 import {
@@ -119,7 +120,7 @@ function AdminProdcuts() {
         }
       );
       dispatch({ type: "CREATE_SUCCESS" });
-      enqueueSnackbar("Product created successfully", { variant: "success" });
+      // enqueueSnackbar("Product created successfully", { variant: "success" });
       router.push(`/admin/product/${data.product._id}`);
     } catch (err) {
       dispatch({ type: "CREATE_FAIL" });
@@ -231,7 +232,7 @@ function AdminProdcuts() {
                                 passHref
                               >
                                 <Button size="small" variant="contained">
-                                  Edit
+                                  <EditIcon />
                                 </Button>
                               </NextLink>{" "}
                               <Button
@@ -239,7 +240,7 @@ function AdminProdcuts() {
                                 size="small"
                                 variant="contained"
                               >
-                                Delete
+                                <Delete />
                               </Button>
                             </TableCell>
                           </TableRow>

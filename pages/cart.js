@@ -54,7 +54,7 @@ const CartPage = () => {
           <div>
             Cart is Empty.
             <NextLink href={`/`} passHref>
-              <Link>Go for Shopping</Link>
+              <Link>{" "}Go for Shopping</Link>
             </NextLink>
           </div>
         ) : (

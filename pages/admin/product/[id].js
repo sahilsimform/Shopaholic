@@ -16,6 +16,7 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@material-ui/core";
+import DoneIcon from "@mui/icons-material/Done";
 import { Controller, useForm } from "react-hook-form";
 import { useSnackbar } from "notistack";
 import { Store } from "../../../src/utils/Store";
@@ -448,7 +449,7 @@ function ProductEdit({ params }) {
                         fullWidth
                         color="primary"
                       >
-                        Update
+                        <DoneIcon />
                       </Button>
                       {loadingUpdate && <CircularProgress />}
                     </ListItem>

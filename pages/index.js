@@ -15,7 +15,7 @@ export default function Home(props) {
   const classes = useStyles();
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
-  const { topRatedProducts, featuredProducts } = props;
+  const { products, featuredProducts } = props;
 
   const addToCartHandler = async (product) => {
     const existItem = state.cart.cartItems.find((x) => x._id === product._id);
@@ -50,7 +50,7 @@ export default function Home(props) {
       </Carousel>
       <Typography variant="h2">Popular Products</Typography>
       <Grid container spacing={3}>
-        {topRatedProducts.map((product) => (
+        {products.map((product) => (
           <Grid item md={4} key={product.name}>
             <ProductItem
               product={product}
@@ -71,17 +71,12 @@ export async function getServerSideProps() {
   )
     .lean()
     .limit(3);
-  const topRatedProductsDocs = await Product.find({}, "-reviews")
-    .lean()
-    .sort({
-      rating: -1,
-    })
-    .limit(6);
+  const products = await Product.find({}).lean();
   await db.disconnect();
   return {
     props: {
       featuredProducts: featuredProductsDocs.map(db.convertDocToObj),
-      topRatedProducts: topRatedProductsDocs.map(db.convertDocToObj),
+      products: products.map(db.convertDocToObj),
     },
   };
 }
