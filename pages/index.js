@@ -71,7 +71,7 @@ export async function getServerSideProps() {
   )
     .lean()
     .limit(3);
-  const products = await Product.find({}).lean();
+  const products = await Product.find({}, "-reviews").lean();
   await db.disconnect();
   return {
     props: {
