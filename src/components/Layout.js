@@ -63,6 +63,7 @@ export default function Layout({ children, title, description }) {
     },
   });
   const classes = useStyles();
+  const Year = new Date().getFullYear();
 
   const [sidbarVisible, setSidebarVisible] = useState(false);
   const sidebarOpenHandler = () => {
@@ -117,7 +118,6 @@ export default function Layout({ children, title, description }) {
     Cookies.remove("cartItems");
     router.push("/");
   };
-
   return (
     <div>
       <Head>
@@ -273,7 +273,7 @@ export default function Layout({ children, title, description }) {
         </AppBar>
         <Container className={classes.main}>{children}</Container>
         <footer className={classes.footer}>
-          All rights reserved. Shopaholic 2022
+          All rights reserved. Shopaholic {Year}
         </footer>
       </ThemeProvider>
     </div>
