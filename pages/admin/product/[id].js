@@ -14,7 +14,7 @@ import {
   TextField,
   CircularProgress,
 } from "@material-ui/core";
-import DoneIcon from "@mui/icons-material/Done";
+import DoneIcon from "@material-ui/icons/Done";
 import { Controller, useForm } from "react-hook-form";
 import { useSnackbar } from "notistack";
 import { Store } from "../../../src/utils/Store";
