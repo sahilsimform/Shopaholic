@@ -6,16 +6,12 @@ import axios from "axios";
 import Layout from "../src/components/Layout";
 import db from "../src/utils/db";
 import ProductItem from "../src/components/ProductItem";
-import NextLink from "next/link";
-import { Grid, Link, Typography } from "@material-ui/core";
-import Carousel from "react-material-ui-carousel";
-import useStyles from "../src/utils/styles";
+import { Grid } from "@material-ui/core";
 
 export default function Home(props) {
-  const classes = useStyles();
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
-  const { products, featuredProducts } = props;
+  const { products } = props;
 
   const addToCartHandler = async (product) => {
     const existItem = state.cart.cartItems.find((x) => x._id === product._id);
@@ -31,51 +27,29 @@ export default function Home(props) {
 
   return (
     <Layout>
-      <Carousel className={classes.mt1} animation="slide">
-        {featuredProducts.map((product) => (
-          <NextLink
-            key={product._id}
-            href={`/product/${product.slug}`}
-            passHref
-          >
-            <Link>
-              <img
-                src={product.featuredImage}
-                alt={product.name}
-                className={classes.featuredImage}
-              ></img>
-            </Link>
-          </NextLink>
-        ))}
-      </Carousel>
-      <Typography variant="h2">Popular Products</Typography>
-      <Grid container spacing={3}>
-        {products.map((product) => (
-          <Grid item md={4} key={product.name}>
-            <ProductItem
-              product={product}
-              addToCartHandler={addToCartHandler}
-            />
-          </Grid>
-        ))}
-      </Grid>
+      <div>
+        <h1>Products</h1>
+        <Grid container spacing={3}>
+          {products.map((product) => (
+            <Grid item md={4} key={product.name}>
+              <ProductItem
+                product={product}
+                addToCartHandler={addToCartHandler}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </div>
     </Layout>
   );
 }
 
 export async function getServerSideProps() {
   await db.connect();
-  const featuredProductsDocs = await Product.find(
-    { isFeatured: true },
-    "-reviews"
-  )
-    .lean()
-    .limit(3);
   const products = await Product.find({}, "-reviews").lean();
   await db.disconnect();
   return {
     props: {
-      featuredProducts: featuredProductsDocs.map(db.convertDocToObj),
       products: products.map(db.convertDocToObj),
     },
   };
